@@ -18,7 +18,7 @@ function genhtml() {
 
 t_ready(function () {
     let id = "#test";
-    ncinput(id, "По клику", "transform-input", "Введите...");
+    ncdropdown(id, "По клику", "transform-input", "Скруглять;Менять размер");
     ncinput(id, "Левый верхний угол", "top-left-corner", "Введите...");
     ncinput(id, "Правый верхний угол", "top-right-corner", "Введите...");
     ncinput(id, "Правый нижний угол", "bottom-right-corner", "Введите...");
@@ -33,6 +33,5 @@ t_ready(function () {
 
     let hscode = `${nspan("n-code")}`;
     generatecode(hscode);
-    $('[name="transform-input"]').val("скруглять");
     setNewValue()
 });

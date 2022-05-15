@@ -44,7 +44,6 @@ function calcBorderValues() {
   const topRight = $('[name="top-right-corner"]').val().length == 0 ? 0 : $('[name="top-right-corner"]').val();
   const bottomLeft = $('[name="bottom-right-corner"]').val().length == 0 ? 0 : $('[name="bottom-right-corner"]').val();
   const bottomRight = $('[name="bottom-left-corner"]').val().length == 0 ? 0 : $('[name="bottom-left-corner"]').val();
-  console.log(topLeft)
   return `const square = document.querySelector(".tn-atom");
     square.style.borderTopLeftRadius = '${topLeft}px';
     square.style.borderTopRightRadius = '${topRight}px';
@@ -55,7 +54,6 @@ function calcBorderValues() {
 
 function calcScaleValue() {
   const scale = $('[name="scale"]').val().length == 0 ? 1 : (parseInt($('[name="scale"]').val()) + 100)/100;
-  console.log(scale)
   return `const square = document.querySelector(".tn-atom");
           square.style.transform = "scale(${scale})";
 `
