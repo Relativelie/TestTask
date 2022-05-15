@@ -39,13 +39,6 @@ function input2code(input, iclass, txt1, txt2, val1, repl, repl2) {
   }
 }
 
-const borderInputsPath = {
-  topLeftBorder: '[name="top-left-corner"]',
-  topRightBorder: '[name="top-right-corner"]',
-  bottomLeftBorder: '[name="bottom-right-corner"]',
-  bottomRightBorder: '[name="bottom-left-corner"]'
-}
-
 function calcBorderValues() {
   const topLeft = $('[name="top-left-corner"]').val().length == 0 ? 0 : $('[name="top-left-corner"]').val();
   const topRight = $('[name="top-right-corner"]').val().length == 0 ? 0 : $('[name="top-right-corner"]').val();
