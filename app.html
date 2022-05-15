@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Моя библиотека</title>
+   
+    
+    <script src="https://static.tildacdn.com/js/jquery-1.10.2.min.js" onerror="this.loaderr='y';"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+    <script src="gen.js"></script>
+    <script src="app.js">   </script>
+</head>
+<body>
+    <div id='test'><form class="t-form__inputsbox">
+    </form></div>
+  
+  <pre>
+  <code class="myCode">text</code>
+    
+  </pre>
+  
+  <script>
+    $(document).ready(function() {
+        setTimeout(function(){
+        var clipboard = new ClipboardJS('.nlcopybtn', {
+            target: function(trigger) {
+              return trigger.nextElementSibling;
+            }
+        });
+        clipboard.on('success', function(e) {
+         $('.copied-label').addClass('active');
+          setTimeout(function() {
+            $('.copied-label').removeClass('active');
+          }, 2000);
+        });
+        $('.nlcopybtn').click(function(){
+            $(this).html('Скопировано');
+            $(this).css('background-color','#221e1e'); 
+            setTimeout(function(){
+                $('.nlcopybtn').html('Копировать код');
+                $('.nlcopybtn').css('background-color','#0058ff'); 
+            },1500);
+        });
+        },600);
+    });
+    </script>
+    <style>
+        .nlcopybtn {
+            color:#fff;
+            display: table;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #0058ff;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+    </style>
+</body>
+</html>
