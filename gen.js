@@ -67,7 +67,6 @@ function calcBorderValues() {
       } else {
           for(let i=0; i<allBorders.length; i++) {
               const borderValue = convertToInt(square.target.style[allBorders[i][0]])
-              console.log(borderValue)
               if (borderValue > 0) {
                   prevActiveBorder = allBorders[i][0];
                   const number = i === allBorders.length-1 ? -1 : i;
@@ -87,12 +86,10 @@ function calcScaleValue() {
   return `const square = document.querySelector(".tn-atom");
   const convertToInt = (str) => {
       const newValue = str.slice(6, -1);
-      console.log(typeof newValue)
       return parseFloat(newValue)
   }
   square.addEventListener("click", function (square) {
       const scaleVal = convertToInt(square.target.style.transform)
-      console.log(scaleVal)
       if (scaleVal!== NaN && (scaleVal > 1 || scaleVal < 1)) {
           square.target.style.transform = "scale(1)";
       } else square.target.style.transform = "scale(${scale})"
