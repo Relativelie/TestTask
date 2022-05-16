@@ -45,17 +45,58 @@ function calcBorderValues() {
   const bottomLeft = $('[name="bottom-right-corner"]').val().length == 0 ? 0 : $('[name="bottom-right-corner"]').val();
   const bottomRight = $('[name="bottom-left-corner"]').val().length == 0 ? 0 : $('[name="bottom-left-corner"]').val();
   return `const square = document.querySelector(".tn-atom");
-    square.style.borderTopLeftRadius = '${topLeft}px';
-    square.style.borderTopRightRadius = '${topRight}px';
-    square.style.borderBottomRightRadius = '${bottomLeft}px';
-    square.style.borderBottomLeftRadius = '${bottomRight}px';
+  const convertToInt = (str) => {
+      const newValue = str.slice(0, -2);
+      return parseInt(newValue)
+  }
+  
+  square.addEventListener("click", function (square) {
+      const allBorders = [
+          ["borderTopLeftRadius", "${topLeft}px"],
+          ["borderTopRightRadius", "${topRight}px"],
+          ["borderBottomRightRadius", "${bottomLeft}px"],
+          ["borderBottomLeftRadius", "${bottomRight}px"],
+      ];
+      let activeBorder = "";
+      let prevActiveBorder = "";
+      let activeBorderValue=""
+      const activeBorderStyle = square.target.style[0]
+      if (activeBorderStyle === undefined) {
+          activeBorder = allBorders[0][0];
+          activeBorderValue = allBorders[0][1]
+      } else {
+          for(let i=0; i<allBorders.length; i++) {
+              const borderValue = convertToInt(square.target.style[allBorders[i][0]])
+              console.log(borderValue)
+              if (borderValue > 0) {
+                  prevActiveBorder = allBorders[i][0];
+                  const number = i === allBorders.length-1 ? -1 : i;
+                  activeBorder = allBorders[number + 1][0];
+                  activeBorderValue = allBorders[number + 1][1]
+              }
+          }
+      }
+      square.target.style[prevActiveBorder] = "0"
+      square.target.style[activeBorder] = activeBorderValue;
+  })
 `
 }
 
 function calcScaleValue() {
   const scale = $('[name="scale"]').val().length == 0 ? 1 : (parseInt($('[name="scale"]').val()) + 100)/100;
   return `const square = document.querySelector(".tn-atom");
-          square.style.transform = "scale(${scale})";
+  const convertToInt = (str) => {
+      const newValue = str.slice(6, -1);
+      console.log(typeof newValue)
+      return parseFloat(newValue)
+  }
+  square.addEventListener("click", function (square) {
+      const scaleVal = convertToInt(square.target.style.transform)
+      console.log(scaleVal)
+      if (scaleVal!== NaN && (scaleVal > 1 || scaleVal < 1)) {
+          square.target.style.transform = "scale(1)";
+      } else square.target.style.transform = "scale(${scale})"
+  })
 `
 }
 
